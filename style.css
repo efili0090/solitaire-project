@@ -141,7 +141,7 @@ font-family: "Arial Black";
  color: white;
  height:45px;
  width: 135px; 
- margin-left:215px; 
+ margin-left:220px; 
  border-radius: 15px;
 float: center;
 
@@ -895,3 +895,4 @@ width: 100%;
    .tab .pile[data-unplayed='2'] .card:nth-child(20),
    .tab .pile[data-unplayed='4'] .card:nth-child(21) { top: 108em;  left: 0; }
    .tab .pile[data-unplayed='2'] .card:nth-child(21) { top: 114em;  left: 0; }
+
