@@ -1,1 +1,394 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Solitaire</title>
+</head>
+
+
+<body>
+
+   <h1 id="winBanner"></h1>
+   <button id="new" onClick="window.location.reload();">New Game</button>
+
+<button id="survey">Feedback</button>
+
+   <!-- The Modal -->
+   <div id="Modal2" class="modal2">
+
+   <!-- Modal content -->
+   <div class="feedback-modal-content">
+      <span class="close2">&times;</span>
+   <h1 id="mod2title">How are you finding Solitaire?</h1>
+<form action="https://formspree.io/f/meqvozbg" method="POST"enctype="multipart/form-data">
+  <fieldset id="fs-frm-selects">
+      <label for="timely">1. The game is enjoyable</label>
+      <select name="timely" id="timely" required="">
+        <option value="Choose" selected="" disabled="">Choose</option>
+        <option value="1">Strongly Agree</option>
+        <option value="3">Agree</option>
+        <option value="5">Neutral</option>
+        <option value="7">Disagree</option>
+        <option value="9">Strongly Disagree</option>
+      </select>
+<br>
+<br>
+      <label for="reliable">2. The game is reliable </label>
+      <select name="quality" id="quality" required="">
+        <option value="Choose" selected="" disabled="">Choose</option>
+        <option value="1">Strongly Agree</option>
+        <option value="3">Agree</option>
+        <option value="5">Neutral</option>
+        <option value="7">Disagree</option>
+        <option value="9">Strongly Disagree</option>
+      </select>
+<br>
+<br>
+      <label for="easeofuse">3. The game is easy to use </label>
+      <select name="accessibility" id="accessibility" required="">
+        <option value="Choose" selected="" disabled="">Choose</option>
+        <option value="1">Strongly Agree</option>
+        <option value="3">Agree</option>
+        <option value="5">Neutral</option>
+        <option value="7">Disagree</option>
+        <option value="9">Strongly Disagree</option>
+      </select>
+<br>
+<br>
+      <label for="instructions">4. The instructions were clear to me </label>
+      <select name="instruction" id="instructionsy" required="">
+        <option value="Choose" selected="" disabled="">Choose</option>
+        <option value="1">Strongly Agree</option>
+        <option value="3">Agree</option>
+        <option value="5">Neutral</option>
+        <option value="7">Disagree</option>
+        <option value="9">Strongly Disagree</option>
+      </select>
+<br>
+<br>
+    </fieldset>
+    <label for="message">Additional Comments</label>
+<br>
+<br>
+
+    <textarea rows="4" cols="28" name="message" id="message" placeholder="Thank you for your comments" required=""></textarea>
+    <input type="hidden" name="_subject" id="email-subject" value="Survey Responses">
+  </fieldset>
+<br>
+  <input type="submit" value="Send Response">
+</form>
+</form>
+      <h3 id="thanks">Thank you for your feedback!</h3>
+
+   </div>
+
+   </div>
+
+   <!-- Trigger/Open The Modal -->
+   <button id="myBtn">Instructions</button>
+
+   <!-- The Modal -->
+   <div id="myModal" class="modal">
+
+   <!-- Modal content -->
+   <div class="modal-content">
+      <span class="close">&times;</span>
+   <h1>Welcome to Solitaire!</h1>
+      <h3>How To Play</h3>
+      <ul id="play" style="list-style-type:square">
+      <li>Click on the card you wish to move, then click where you want to move it.</li>
+      <li>If the card is highlighted, it is selected.</li>
+      <li>If the card does not move, the move was invalid.</li>
+      <li>You can also double-click a card to move it to the top foundation stacks.</li>
+</ul>
+      <h3>Game Rules</h3>
+ <ul id="rules" style="list-style-type:square">
+      <li>The goal is to stack all cards in the top foundation stacks by suit from Ace to King.</li>
+      <li>Cards in the tableau must be stacked in alternating colour order in descending rank.</li>
+      <li>Only a king can be placed in an empty tableau space.</li>
+</ul>
+   </div>
+
+   </div>
+
+   <button id="switchMode">Vegas Mode</button>
+
+   <div id="score">
+      <div class="timer">
+         <button id="play-pause">
+            <i id="play">Play</i>
+            <i id="pause">Pause</i>
+         </button>
+         <label>Timer:</label>
+         <span>00:00</span>
+      </div>
+      <div class="move-count" data-moves="0">
+         <label>Moves:</label>
+         <span>0</span>
+      </div>
+      <div class="score" data-score="0">
+         <label id="scoreLabel">Score:</label>
+         <span>0</span>
+      </div>
+   </div>
+ 
+      <div id="table">
+
+         <div class="upper-row">
+            <div id="stock" class="stock pile" data-pile="stock">
+               <i class="reload-icon" data-action="reload">
+                  <span></span>
+               </i>
+               <ul></ul>
+            </div>
+
+            <div id="waste" class="waste pile" data-pile="waste">
+               <ul></ul>
+            </div>
+
+            <ul id="fnd" class="fnd">
+               <li id="spades" class="spades pile" data-pile="spades" data-empty="true"><ul></ul></li>
+               <li id="hearts" class="hearts pile" data-pile="hearts" data-empty="true"><ul></ul></li>
+               <li id="diamonds" class="diamonds pile" data-pile="diamonds" data-empty="true"><ul></ul></li>
+               <li id="clubs" class="clubs pile" data-pile="clubs" data-empty="true"><ul></ul></li>
+            </ul>
+         </div>
+
+         <div class="lower-row">
+            <ul id="tab" class="tab">
+               <li class="pile" data-pile="1"><ul></ul></li>
+               <li class="pile" data-pile="2"><ul></ul></li>
+               <li class="pile" data-pile="3"><ul></ul></li>
+               <li class="pile" data-pile="4"><ul></ul></li>
+               <li class="pile" data-pile="5"><ul></ul></li>
+               <li class="pile" data-pile="6"><ul></ul></li>
+               <li class="pile" data-pile="7"><ul></ul></li>
+            </ul>
+         </div>
+
+      </div>
+
+
+
+   <ul class="template">
+      <li data-rank="2">
+         <div class="two {{suit}}">
+            <div class="corner top">
+               <span class="rank">2</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_center"></span>
+            <span class="suit bottom_center"></span>
+            <div class="corner bottom">
+               <span class="rank">2</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="3">
+         <div class="three {{suit}}">
+            <div class="corner top">
+               <span class="rank">3</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_center"></span>
+            <span class="suit middle_center"></span>
+            <span class="suit bottom_center"></span>
+            <div class="corner bottom">
+               <span class="rank">3</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="4">
+         <div class="four {{suit}}">
+            <div class="corner top">
+               <span class="rank">4</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">4</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="5">
+         <div class="five {{suit}}">
+            <div class="corner top">
+               <span class="rank">5</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_center"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">5</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="6">
+         <div class="six {{suit}}">
+            <div class="corner top">
+               <span class="rank">6</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_left"></span>
+            <span class="suit middle_right"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">6</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="7">
+         <div class="seven {{suit}}">
+            <div class="corner top">
+               <span class="rank">7</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_left"></span>
+            <span class="suit middle_top"></span>
+            <span class="suit middle_right"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">7</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="8">
+         <div class="eight {{suit}}">
+            <div class="corner top">
+               <span class="rank">8</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_left"></span>
+            <span class="suit middle_top_center"></span>
+            <span class="suit middle_right"></span>
+            <span class="suit middle_bottom_center"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">8</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="9">
+         <div class="nine {{suit}}">
+            <div class="corner top">
+               <span class="rank">9</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_top_left"></span>
+            <span class="suit middle_center"></span>
+            <span class="suit middle_top_right"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <span class="suit middle_bottom_left"></span>
+            <span class="suit middle_bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">9</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="10">
+         <div class="ten {{suit}}">
+            <div class="corner top">
+               <span class="rank">10</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit top_left"></span>
+            <span class="suit top_right"></span>
+            <span class="suit middle_top_left"></span>
+            <span class="suit middle_top_center"></span>
+            <span class="suit middle_top_right"></span>
+            <span class="suit bottom_left"></span>
+            <span class="suit bottom_right"></span>
+            <span class="suit middle_bottom_center"></span>
+            <span class="suit middle_bottom_left"></span>
+            <span class="suit middle_bottom_right"></span>
+            <div class="corner bottom">
+               <span class="rank">10</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="J">
+         <div class="jack {{suit}}">
+            <div class="corner top">
+               <span class="rank">J</span>
+               <span class="suit"></span>
+            </div>
+            <span class="face middle_center"></span>
+            <div class="corner bottom">
+               <span class="rank">J</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="Q">
+         <div class="queen {{suit}}">
+            <div class="corner top">
+               <span class="rank">Q</span>
+               <span class="suit"></span>
+            </div>
+            <span class="face middle_center"></span>
+            <div class="corner bottom">
+               <span class="rank">Q</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="K">
+         <div class="king {{suit}}">
+            <div class="corner top">
+               <span class="rank">K</span>
+               <span class="suit"></span>
+            </div>
+            <span class="face middle_center"></span>
+            <div class="corner bottom">
+               <span class="rank">K</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+      <li data-rank="A">
+         <div class="ace {{suit}}">
+            <div class="corner top">
+               <span class="rank">A</span>
+               <span class="suit"></span>
+            </div>
+            <span class="suit middle_center"></span>
+            <div class="corner bottom">
+               <span class="rank">A</span>
+               <span class="suit"></span>
+            </div>
+         </div>
+      </li>
+   </ul><!-- /.templates -->
+
+   <script src="script.js"></script>
+</body>
+</html>
